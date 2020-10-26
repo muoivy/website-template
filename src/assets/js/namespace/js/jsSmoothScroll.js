@@ -9,7 +9,7 @@ export default function jsSmoothScroll() {
   // クラスで指定する場合。
   // const baseNameClass = 'js-SmoothScroll';
   // ハッシュ付きリンクに指定する場合。
-  const baseNameAttr = 'a[href*="#"]:not([href*="/"]):not(#st-BackToTop)';
+  const baseNameAttr = 'a[href*="#"]:not([href*="/"]):not([href="#"]):not(#v1-back-to-top)';
   // 固定ヘッダーのCSSセレクタ。
   const headerElement = '[data-scroll-header]';
 
@@ -25,6 +25,11 @@ export default function jsSmoothScroll() {
     updateURL: true, // スクロール完了後にURLを更新する
     preventDefault: true, // コンテナ要素のクリックイベントを防止する
     stopPropagation: true, // コンテナ要素のバブリングを防止する
+    after(offset, $trigger, scrollElement) {
+      const destination = document.getElementById(scrollElement.ctx.hash.replace('#', ''));
+      destination.setAttribute('tabindex', '-1');
+      destination.focus();
+    },
   });
 
   /**

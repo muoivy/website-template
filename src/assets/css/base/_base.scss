@@ -139,6 +139,14 @@ img {
 }
 
 /**
+ * normalize.cssの`line-height`をリセットします。
+ * placeholderが上にズレるのを防ぎます。
+ */
+input[type="text"] {
+  line-height: normal;
+}
+
+/**
  * IE10以降の`input[type="text"]`で入力内容の消去機能を非表示にします。
  */
 [type="text"]::-ms-clear {
@@ -161,7 +169,7 @@ img {
 }
 
 // フォーカスインジゲータはキーボード操作のときにだけ表示します。
-[data-whatinput="mouse"] *:focus,
-[data-whatinput="touch"] *:focus {
+[data-whatintent="mouse"] *:focus,
+[data-whatintent="touch"] *:focus {
   outline: none;
 }
